@@ -1,8 +1,11 @@
 # AZRemoteTable
+#### Loading remote data was never this easy
 
 [![CocoaPods](https://img.shields.io/cocoapods/v/AZRemoteTable.svg)]()
 [![CocoaPods](https://img.shields.io/cocoapods/l/AZRemoteTable.svg)]()
 [![CocoaPods](https://img.shields.io/cocoapods/p/AZRemoteTable.svg)]()
+
+<img src="Screenshots/gif_1.gif" width="320" /> <img src="Screenshots/gif_2.gif" width="320" />
 
 ## Features
 - [x] Automatic "Load More" 🚀
