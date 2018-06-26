@@ -10,6 +10,8 @@ import UIKit
 
 public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
 
+
+    /// A weak reference to the table view. Used to notify self when the refresh control is activated.
     open weak var tableView: UITableView?
 
     /// The current page that we are fetching.
@@ -25,7 +27,13 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
 
     /// A flag that indicates if we loaded the first time.
     fileprivate(set) open var didInitialLoad: Bool = false
+    
 
+    /// A helper function used to attach the refresh control.
+    ///
+    /// - Parameters:
+    ///   - tableView: The table view.
+    ///   - refreshControl: The refresh control.
     public final func tableView(_ tableView: UITableView, setupRefreshControl refreshControl: UIRefreshControl){
         refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
     }
@@ -44,8 +52,6 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     ///   - tableView: The table view.
     ///   - didRequestPage: The page being requested.
     public func tableView(_ tableView: UITableView, didRequestPage page: Int,usingRefreshControl: Bool = false){}
-
-    //TODO: - Detect pull to refresh event and notify data source.
 
 
     /// Called before displaying a certain cell on the table. Overrided in order to detect when reaching the bottom.

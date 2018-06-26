@@ -6,13 +6,20 @@
 //  Copyright © 2018 Antonio Zaitoun. All rights reserved.
 //
 
-import UIKit
+import UIKit.UITableView
+import UIKit.UITableViewCell
 
 public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
     fileprivate var showLoadingIndicator: Bool = false
 
 
+    /// The number of items in the data source array.
+    ///
+    /// - Parameters:
+    ///   - tableView: The table view.
+    ///   - section: The section number
+    /// - Returns: The number of data items to display.
     public func numberOfRowsInSection(_ tableView: UITableView, section: Int) -> Int {
         fatalError("Unimplemented Function")
     }
@@ -21,11 +28,23 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
         fatalError("Unimplemented Function")
     }
 
+
+    /// A delegate function used to return the loading cell.
+    ///
+    /// - Parameter tableView: The table view.
+    /// - Returns: A UITableViewCell used to indicated the "Load More"
     public func loadingCellFor(_ tableView: UITableView) -> UITableViewCell {
-        let loadingIndicator = loadingView(tableView) ?? UIView()
+        let loadingIndicator = loadingView(tableView, forLoadingCell: true) ?? UIView()
         return LoadingCell(view: loadingIndicator, style: .default, reuseIdentifier: "loading_cell")
     }
 
+
+    /// A function called whenever a row is needed to be displayed.
+    ///
+    /// - Parameters:
+    ///   - tableView: The table view.
+    ///   - indexPath: The index path.
+    /// - Returns: The table view cell to display.
     public final func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoadingIndexPath(tableView, indexPath) {
             return loadingCellFor(tableView)
@@ -34,6 +53,13 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
         }
     }
 
+
+    /// Providing implementation for the numberOfRowsInSection: function.
+    ///
+    /// - Parameters:
+    ///   - tableView: The table view.
+    ///   - section: The section number.
+    /// - Returns: The number of items in that section.
     public final func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfItems = self.numberOfRowsInSection(tableView,section: section)
         return numberOfItems + ( showLoadingIndicator ? 1 : 0 )
@@ -53,7 +79,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///
     /// - Parameter tableView: The tableview.
     /// - Returns: The view to display as the loading indicator.
-    public func loadingView(_ tableView: UITableView) -> UIView? {
+    public func loadingView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityIndicator.hidesWhenStopped = false
         activityIndicator.startAnimating()
@@ -65,7 +91,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///
     /// - Parameter tableView: The tableview.
     /// - Returns: A view to show the error, nil to show none.
-    public func errorView(_ tableView: UITableView) -> UIView? {
+    public func errorView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
         let errorLabel = UILabel()
         errorLabel.text = "Error"
         return errorLabel
@@ -91,6 +117,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     }
 }
 
+/// The default loading cell
 fileprivate class LoadingCell: UITableViewCell {
 
     convenience init(view: UIView, style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -105,7 +132,6 @@ fileprivate class LoadingCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         isUserInteractionEnabled = false
-
     }
 
     required init?(coder aDecoder: NSCoder) {
