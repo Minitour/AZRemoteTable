@@ -12,6 +12,9 @@
 		9D3872BF20E2A0E300E6C27F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D3872BD20E2A0E300E6C27F /* Main.storyboard */; };
 		9D3872C120E2A0E500E6C27F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D3872C020E2A0E500E6C27F /* Assets.xcassets */; };
 		9D3872C420E2A0E500E6C27F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D3872C220E2A0E500E6C27F /* LaunchScreen.storyboard */; };
+		9D3872CF20E2A13000E6C27F /* AZRemoteTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872CC20E2A13000E6C27F /* AZRemoteTableDataSource.swift */; };
+		9D3872D020E2A13000E6C27F /* AZRemoteTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872CD20E2A13000E6C27F /* AZRemoteTableDelegate.swift */; };
+		9D3872D120E2A13000E6C27F /* AZRemoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872CE20E2A13000E6C27F /* AZRemoteTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		9D3872C020E2A0E500E6C27F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D3872C320E2A0E500E6C27F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D3872C520E2A0E500E6C27F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D3872CC20E2A13000E6C27F /* AZRemoteTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTableDataSource.swift; sourceTree = "<group>"; };
+		9D3872CD20E2A13000E6C27F /* AZRemoteTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTableDelegate.swift; sourceTree = "<group>"; };
+		9D3872CE20E2A13000E6C27F /* AZRemoteTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,7 @@
 		9D3872AD20E2A0E300E6C27F = {
 			isa = PBXGroup;
 			children = (
+				9D3872CB20E2A12500E6C27F /* Sources */,
 				9D3872B820E2A0E300E6C27F /* AZRemoteTableExample */,
 				9D3872B720E2A0E300E6C27F /* Products */,
 			);
@@ -62,6 +69,16 @@
 				9D3872C520E2A0E500E6C27F /* Info.plist */,
 			);
 			path = AZRemoteTableExample;
+			sourceTree = "<group>";
+		};
+		9D3872CB20E2A12500E6C27F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				9D3872CE20E2A13000E6C27F /* AZRemoteTable.swift */,
+				9D3872CC20E2A13000E6C27F /* AZRemoteTableDataSource.swift */,
+				9D3872CD20E2A13000E6C27F /* AZRemoteTableDelegate.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D3872D020E2A13000E6C27F /* AZRemoteTableDelegate.swift in Sources */,
+				9D3872D120E2A13000E6C27F /* AZRemoteTable.swift in Sources */,
 				9D3872BC20E2A0E300E6C27F /* ViewController.swift in Sources */,
+				9D3872CF20E2A13000E6C27F /* AZRemoteTableDataSource.swift in Sources */,
 				9D3872BA20E2A0E300E6C27F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
