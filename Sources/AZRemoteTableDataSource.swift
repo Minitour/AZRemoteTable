@@ -9,7 +9,7 @@
 import UIKit.UITableView
 import UIKit.UITableViewCell
 
-public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
+open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
 
     /// A flag used to indicate if we want to show the loading cell, true when hasMore is true.
