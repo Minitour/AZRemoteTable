@@ -23,6 +23,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     /// A flag that indicates if there is more data to load.
     fileprivate(set) open var loadMore: Bool = true
 
+    /// A flag that indicates if we loaded the first time.
     fileprivate(set) open var didInitialLoad: Bool = false
 
     public final func tableView(_ tableView: UITableView, setupRefreshControl refreshControl: UIRefreshControl){

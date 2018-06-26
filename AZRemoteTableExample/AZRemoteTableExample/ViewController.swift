@@ -12,10 +12,14 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    let delegate = CustomRemoteDelegate()
+    let dataSource = CustomRemoteDataSource()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.delegate = delegate
+        tableView.dataSource = dataSource
+        tableView.remote.initialLoad()
     }
-
 }
 

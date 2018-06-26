@@ -16,6 +16,8 @@
 		9D3872D020E2A13000E6C27F /* AZRemoteTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872CD20E2A13000E6C27F /* AZRemoteTableDelegate.swift */; };
 		9D3872D120E2A13000E6C27F /* AZRemoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872CE20E2A13000E6C27F /* AZRemoteTable.swift */; };
 		9D3872D420E2A1EC00E6C27F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872D320E2A1EC00E6C27F /* APIManager.swift */; };
+		9D3872D720E2A2AE00E6C27F /* CustomRemoteDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872D620E2A2AE00E6C27F /* CustomRemoteDelegate.swift */; };
+		9D3872D920E2A2E600E6C27F /* CustomRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872D820E2A2E600E6C27F /* CustomRemoteDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		9D3872CD20E2A13000E6C27F /* AZRemoteTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTableDelegate.swift; sourceTree = "<group>"; };
 		9D3872CE20E2A13000E6C27F /* AZRemoteTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTable.swift; sourceTree = "<group>"; };
 		9D3872D320E2A1EC00E6C27F /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		9D3872D620E2A2AE00E6C27F /* CustomRemoteDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRemoteDelegate.swift; sourceTree = "<group>"; };
+		9D3872D820E2A2E600E6C27F /* CustomRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRemoteDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 		9D3872B820E2A0E300E6C27F /* AZRemoteTableExample */ = {
 			isa = PBXGroup;
 			children = (
+				9D3872D520E2A29800E6C27F /* RemoteTable */,
 				9D3872D220E2A1E000E6C27F /* API */,
 				9D3872B920E2A0E300E6C27F /* AppDelegate.swift */,
 				9D3872BB20E2A0E300E6C27F /* ViewController.swift */,
@@ -90,6 +95,15 @@
 				9D3872D320E2A1EC00E6C27F /* APIManager.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		9D3872D520E2A29800E6C27F /* RemoteTable */ = {
+			isa = PBXGroup;
+			children = (
+				9D3872D620E2A2AE00E6C27F /* CustomRemoteDelegate.swift */,
+				9D3872D820E2A2E600E6C27F /* CustomRemoteDataSource.swift */,
+			);
+			path = RemoteTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,11 +178,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D3872D420E2A1EC00E6C27F /* APIManager.swift in Sources */,
+				9D3872D920E2A2E600E6C27F /* CustomRemoteDataSource.swift in Sources */,
 				9D3872D020E2A13000E6C27F /* AZRemoteTableDelegate.swift in Sources */,
 				9D3872D120E2A13000E6C27F /* AZRemoteTable.swift in Sources */,
 				9D3872BC20E2A0E300E6C27F /* ViewController.swift in Sources */,
 				9D3872CF20E2A13000E6C27F /* AZRemoteTableDataSource.swift in Sources */,
 				9D3872BA20E2A0E300E6C27F /* AppDelegate.swift in Sources */,
+				9D3872D720E2A2AE00E6C27F /* CustomRemoteDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
