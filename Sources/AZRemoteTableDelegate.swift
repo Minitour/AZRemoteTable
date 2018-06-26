@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
+open class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
 
 
     /// A weak reference to the table view. Used to notify self when the refresh control is activated.
@@ -34,7 +34,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     /// - Parameters:
     ///   - tableView: The table view.
     ///   - view: The view to displayl.
-    public func tableView(_ tableView: UITableView, layoutView view: UIView) {
+    open func tableView(_ tableView: UITableView, layoutView view: UIView) {
         tableView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
@@ -55,7 +55,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     /// - Parameters:
     ///   - tableView: The table view
     ///   - control: The refresh control
-    public func tableView(_ tableView: UITableView, didRefreshWithControl control: UIRefreshControl){}
+    open func tableView(_ tableView: UITableView, didRefreshWithControl control: UIRefreshControl){}
 
 
     /// Function to override, gets called when the table needs to load more data.
@@ -63,7 +63,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     /// - Parameters:
     ///   - tableView: The table view.
     ///   - didRequestPage: The page being requested.
-    public func tableView(_ tableView: UITableView, didRequestPage page: Int,usingRefreshControl: Bool = false){}
+    open func tableView(_ tableView: UITableView, didRequestPage page: Int,usingRefreshControl: Bool = false){}
 
 
     /// Called before displaying a certain cell on the table. Overrided in order to detect when reaching the bottom.
@@ -72,7 +72,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     ///   - tableView:
     ///   - cell:
     ///   - indexPath:
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
         //get last element index
         let lastElement = tableView.remote.dataSource?.numberOfRowsInSection(tableView, section: indexPath.section) ?? 1

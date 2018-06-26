@@ -30,15 +30,15 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///   - tableView: The table view.
     ///   - section: The section number
     /// - Returns: The number of data items to display.
-    public func numberOfRowsInSection(_ tableView: UITableView, section: Int) -> Int {
+    open func numberOfRowsInSection(_ tableView: UITableView, section: Int) -> Int {
         fatalError("Unimplemented Function")
     }
 
-    public func cellForRowAt(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    open func cellForRowAt(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         fatalError("Unimplemented Function")
     }
 
-    public func reset(){
+    open func reset(){
         hasData = false
         isErrorMode = false
     }
@@ -48,7 +48,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///
     /// - Parameter tableView: The table view.
     /// - Returns: A UITableViewCell used to indicated the "Load More"
-    public func loadingCellFor(_ tableView: UITableView,usingView view: UIView) -> UITableViewCell {
+    open func loadingCellFor(_ tableView: UITableView,usingView view: UIView) -> UITableViewCell {
         return LoadingCell(view: view, style: .default, reuseIdentifier: "loading_cell")
     }
 
@@ -94,7 +94,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///
     /// - Parameter tableView: The tableview using this control.
     /// - Returns: UIRefreshControl to display. return nil to display no refresh control.
-    public func refreshControl(_ tableView: UITableView) -> UIRefreshControl? {
+    open func refreshControl(_ tableView: UITableView) -> UIRefreshControl? {
         return UIRefreshControl()
     }
 
@@ -103,7 +103,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///
     /// - Parameter tableView: The tableview.
     /// - Returns: The view to display as the loading indicator.
-    public func loadingView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
+    open func loadingView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
         let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityIndicator.hidesWhenStopped = false
         activityIndicator.startAnimating()
@@ -117,7 +117,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///   - tableView: The tableview.
     ///   - forLoadingCell: A boolean flag used to indicated if this view will be used in a cell or the entire table.
     /// - Returns: A view to show the error, nil to show none.
-    public func errorView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
+    open func errorView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
         let errorLabel = ErrorButton(type: .system)
         errorLabel.onClick = { btn in
             let remote = tableView.remote
