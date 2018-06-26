@@ -21,7 +21,10 @@ class CustomRemoteDataSource: AZRemoteTableDataSource {
     }
 
     /// Helper function to clear items.
-    public func clearItems() { items.removeAll() }
+    public func clearItems() {
+        items.removeAll()
+        reset()
+    }
 
     // MARK: - AZRemoteTableDataSource
 

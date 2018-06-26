@@ -11,8 +11,16 @@ import UIKit.UITableViewCell
 
 public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
+
+    /// A flag used to indicate if we want to show the loading cell, true when hasMore is true.
     fileprivate var showLoadingIndicator: Bool = false
+
+
+    /// Indicates if we should display an error or not.
     fileprivate var isErrorMode: Bool = false
+
+
+    /// A flag that indicates if there is data or not.
     fileprivate(set) open var hasData: Bool = false
 
 
@@ -28,6 +36,11 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
     public func cellForRowAt(_ tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
         fatalError("Unimplemented Function")
+    }
+
+    public func reset(){
+        hasData = false
+        isErrorMode = false
     }
 
 
