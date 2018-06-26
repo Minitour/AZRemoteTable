@@ -15,9 +15,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     open weak var tableView: UITableView?
 
     /// The current page that we are fetching.
-    fileprivate(set) open var currentPage: Int = 0 {
-        didSet{ if !didInitialLoad { didInitialLoad = true} }
-    }
+    fileprivate(set) open var currentPage: Int = 0
 
     /// A flag indicating if the delegate is in a middle of a fetch.
     fileprivate(set) open var awaitingEvent: Bool = false
@@ -26,8 +24,22 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
     fileprivate(set) open var loadMore: Bool = true
 
     /// A flag that indicates if we loaded the first time.
-    fileprivate(set) open var didInitialLoad: Bool = false
+    open var didInitialLoad: Bool{
+        return currentPage != 0
+    }
 
+
+    /// Called only before initial load and if there was an error after the initial load.
+    ///
+    /// - Parameters:
+    ///   - tableView: The table view.
+    ///   - view: The view to displayl.
+    public func tableView(_ tableView: UITableView, layoutView view: UIView) {
+        tableView.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        view.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
+    }
 
     /// A helper function used to attach the refresh control.
     ///

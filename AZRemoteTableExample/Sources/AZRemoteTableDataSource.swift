@@ -13,6 +13,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
     fileprivate var showLoadingIndicator: Bool = false
     fileprivate var isErrorMode: Bool = false
+    fileprivate(set) open var hasData: Bool = false
 
 
     /// The number of items in the data source array.
@@ -47,7 +48,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Returns: The table view cell to display.
     public final func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoadingIndexPath(tableView, indexPath) {
-
+            
             let view: UIView
 
             if isErrorMode {
@@ -99,11 +100,21 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
     /// Returns the view to display when an error occur.
     ///
-    /// - Parameter tableView: The tableview.
+    /// - Parameters:
+    ///   - tableView: The tableview.
+    ///   - forLoadingCell: A boolean flag used to indicated if this view will be used in a cell or the entire table.
     /// - Returns: A view to show the error, nil to show none.
     public func errorView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
         let errorLabel = ErrorButton(type: .system)
-        errorLabel.onClick = { btn in tableView.reloadData() }
+        errorLabel.onClick = { btn in
+            let remote = tableView.remote
+            let currentPage = remote.delegate?.currentPage ?? -1
+            if currentPage == 0 {
+                remote.initialLoad()
+            }else {
+                tableView.reloadData()
+            }
+        }
         errorLabel.setTitle("Try Again", for: [])
         errorLabel.setTitleColor(UIColor.red, for: [])
         return errorLabel
@@ -114,6 +125,7 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Parameter hasMore: a flag which indicates if there is more data to load.
     public final func notify(hasMore: Bool){
         showLoadingIndicator = hasMore
+        hasData = true
         isErrorMode = false
     }
 
@@ -134,6 +146,8 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     }
 }
 
+
+/// Custom UIButton sub class used for the default error view.
 fileprivate class ErrorButton: UIButton {
     open var onClick: ((UIButton)->Void)?
 
