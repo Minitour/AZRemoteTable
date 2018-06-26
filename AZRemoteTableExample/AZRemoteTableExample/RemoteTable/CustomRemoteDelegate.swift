@@ -17,26 +17,25 @@ class CustomRemoteDelegate: AZRemoteTableDelegate {
                                    token: "b54695d5-6f98-442f-9b39-4509fcd8aacd",
                                    page: page,
                                    itemsPerPage: 30) { (value1, value2, value3) in
+            let error = page == 2
 
-                                    let error = page == 2
+            //check for errors
+            if error {
+                //error found, notify table
+                tableView.remote.notifyError()
+            }else {
+                //all good, data fetched, add it to the data source.
+                let dataSource = tableView.remote.dataSource as? CustomRemoteDataSource
 
-                                    //check for errors
-                                    if error {
-                                        //error found, notify table
-                                        tableView.remote.notifyError()
-                                    }else {
-                                        //all good, data fetched, add it to the data source.
-                                        let dataSource = tableView.remote.dataSource as? CustomRemoteDataSource
+                //clear all items if we used pull to refresh
+                if usingRefreshControl { dataSource?.clearItems() }
 
-                                        //clear all items if we used pull to refresh
-                                        if usingRefreshControl { dataSource?.clearItems() }
+                //update data source
+                dataSource?.addItems(items: value2)
 
-                                        //update data source
-                                        dataSource?.addItems(items: value2)
-
-                                        //notify table that we are done, and if we have more data to load.
-                                        tableView.remote.notifySuccess(hasMore: true)
-                                    }
+                //notify table that we are done, and if we have more data to load.
+                tableView.remote.notifySuccess(hasMore: true)
+            }
         }
     }
 }
