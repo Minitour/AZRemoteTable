@@ -18,7 +18,7 @@ class CustomRemoteDelegate: AZRemoteTableDelegate {
                                    page: page,
                                    itemsPerPage: 30) { (value1, value2, value3) in
 
-                                    let error = page == 0
+                                    let error = page == 2
 
                                     //check for errors
                                     if error {
