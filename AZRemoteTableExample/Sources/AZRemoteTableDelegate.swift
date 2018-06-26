@@ -27,7 +27,7 @@ public class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
 
     /// A flag that indicates if we loaded the first time.
     fileprivate(set) open var didInitialLoad: Bool = false
-    
+
 
     /// A helper function used to attach the refresh control.
     ///

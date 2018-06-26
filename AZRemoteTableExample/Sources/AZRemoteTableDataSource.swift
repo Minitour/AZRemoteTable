@@ -12,6 +12,7 @@ import UIKit.UITableViewCell
 public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
     fileprivate var showLoadingIndicator: Bool = false
+    fileprivate var isErrorMode: Bool = false
 
 
     /// The number of items in the data source array.
@@ -33,9 +34,8 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///
     /// - Parameter tableView: The table view.
     /// - Returns: A UITableViewCell used to indicated the "Load More"
-    public func loadingCellFor(_ tableView: UITableView) -> UITableViewCell {
-        let loadingIndicator = loadingView(tableView, forLoadingCell: true) ?? UIView()
-        return LoadingCell(view: loadingIndicator, style: .default, reuseIdentifier: "loading_cell")
+    public func loadingCellFor(_ tableView: UITableView,usingView view: UIView) -> UITableViewCell {
+        return LoadingCell(view: view, style: .default, reuseIdentifier: "loading_cell")
     }
 
 
@@ -47,7 +47,17 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Returns: The table view cell to display.
     public final func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if isLoadingIndexPath(tableView, indexPath) {
-            return loadingCellFor(tableView)
+
+            let view: UIView
+
+            if isErrorMode {
+                view = errorView(tableView, forLoadingCell: true) ?? UIView()
+                isErrorMode = false
+            }else {
+                view = loadingView(tableView, forLoadingCell: true) ?? UIView()
+            }
+
+            return loadingCellFor(tableView,usingView: view)
         }else {
             return cellForRowAt(tableView,indexPath: indexPath)
         }
@@ -92,8 +102,10 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Parameter tableView: The tableview.
     /// - Returns: A view to show the error, nil to show none.
     public func errorView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
-        let errorLabel = UILabel()
-        errorLabel.text = "Error"
+        let errorLabel = ErrorButton(type: .system)
+        errorLabel.onClick = { btn in tableView.reloadData() }
+        errorLabel.setTitle("Try Again", for: [])
+        errorLabel.setTitleColor(UIColor.red, for: [])
         return errorLabel
     }
 
@@ -102,6 +114,11 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Parameter hasMore: a flag which indicates if there is more data to load.
     public final func notify(hasMore: Bool){
         showLoadingIndicator = hasMore
+        isErrorMode = false
+    }
+
+    public final func notifyError(){
+        isErrorMode = true
     }
 
 
@@ -114,6 +131,24 @@ public class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     internal func isLoadingIndexPath(_ tableView: UITableView,_ indexPath: IndexPath) -> Bool {
         guard showLoadingIndicator else { return false }
         return indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1
+    }
+}
+
+fileprivate class ErrorButton: UIButton {
+    open var onClick: ((UIButton)->Void)?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addTarget(self, action: #selector(click), for: .touchUpInside)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+
+    @objc func click(){
+        onClick?(self)
     }
 }
 
@@ -131,7 +166,7 @@ fileprivate class LoadingCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        isUserInteractionEnabled = false
+        self.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)
     }
 
     required init?(coder aDecoder: NSCoder) {

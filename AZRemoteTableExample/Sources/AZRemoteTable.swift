@@ -52,7 +52,15 @@ public class AZRemoteTable: NSObject {
     public func notifyError() {
         //notify delegate
         DispatchQueue.main.async {
+            self.delegate?.notify(success: false)
+            self.dataSource?.notifyError()
+
+            //update views
+            if let refreshControl = self.tableView.refreshControl {
+                refreshControl.endRefreshing()
+            }
             
+            self.tableView.reloadData()
         }
     }
 
