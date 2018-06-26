@@ -8,10 +8,11 @@
 <img src="Screenshots/gif_1.gif" width="320" /> <img src="Screenshots/gif_2.gif" width="320" />
 
 ## Features
-- [x] Automatic "Load More" 🚀
-- [x] Pull To Refresh Support 🎯
-- [x] Error Handling 🕸
-- [x] Custom View and Sub-classing 🎨
+- [x] Automatically loads more when scrolling 🚀
+- [x] Pull to refresh support 🏓
+- [x] Works with any UITableView! 🎯
+- [x] Error handling 🕸
+- [x] Custom view and sub-classing 🎨
 
 ## Installation
 
