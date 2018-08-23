@@ -25,16 +25,16 @@ public class AZRemoteTable: NSObject {
         super.init()
     }
 
-    public var delegate: AZRemoteTableDelegate? {
+    open var delegate: AZRemoteTableDelegate? {
         return tableView.delegate as? AZRemoteTableDelegate
     }
 
-    public var dataSource: AZRemoteTableDataSource? {
+    open var dataSource: AZRemoteTableDataSource? {
         return tableView.dataSource as? AZRemoteTableDataSource
     }
 
     /// Call when notifying that the table is ready for updates.
-    public func notifySuccess(hasMore: Bool) {
+    open func notifySuccess(hasMore: Bool) {
         DispatchQueue.main.async() {
             //notify delegate/datasource
             let currentPage = self.delegate?.currentPage ?? -1
@@ -59,7 +59,7 @@ public class AZRemoteTable: NSObject {
 
 
     /// Function used to notify the delegate, the data source and the table view that new data could not be loaded.
-    public func notifyError() {
+    open func notifyError() {
         //notify delegate
         DispatchQueue.main.async {
             self.delegate?.notify(success: false)
@@ -96,7 +96,7 @@ public class AZRemoteTable: NSObject {
 
 
     /// Function used to do the initial setup and make the initial load.
-    public func initialLoad() {
+    open func initialLoad() {
         if let delegate = delegate, !delegate.didInitialLoad {
             delegate.tableView = tableView
 

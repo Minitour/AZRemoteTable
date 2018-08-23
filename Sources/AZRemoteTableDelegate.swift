@@ -91,7 +91,7 @@ open class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
 
     /// Notify delegate that the event has passed. Never call this function directly.
     /// This will get called only from the remote wrapper.
-    public final func notify(success: Bool){
+    open func notify(success: Bool){
 
         awaitingEvent = false
 
