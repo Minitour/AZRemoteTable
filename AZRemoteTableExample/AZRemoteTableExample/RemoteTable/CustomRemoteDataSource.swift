@@ -39,4 +39,8 @@ class CustomRemoteDataSource: AZRemoteTableDataSource {
         //return the number of items currently held.
         return items.count
     }
+
+    override func shouldLoadMore(_ tableView: UITableView) -> Bool {
+        return true
+    }
 }

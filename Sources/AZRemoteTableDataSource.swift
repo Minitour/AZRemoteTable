@@ -86,7 +86,7 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Returns: The number of items in that section.
     public final func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfItems = self.numberOfRowsInSection(tableView,section: section)
-        return numberOfItems + ( showLoadingIndicator ? 1 : 0 )
+        return numberOfItems + ( shouldLoadMore(tableView) ? 1 : 0 )
     }
 
 
@@ -133,6 +133,15 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
         return errorLabel
     }
 
+    
+    /// Use this method do enable the loading indicator visabilty.
+    ///
+    /// - Parameter tableView: The table view.
+    /// - Returns: Return true to load more, else return false.
+    open func shouldLoadMore(_ tableView: UITableView) -> Bool {
+        return showLoadingIndicator
+    }
+
     /// A function called by the wrapper. never call this directly.
     ///
     /// - Parameter hasMore: a flag which indicates if there is more data to load.
@@ -154,7 +163,7 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     ///   - indexPath: The index path to check.
     /// - Returns: True if the index path belongs to a loading cell.
     internal func isLoadingIndexPath(_ tableView: UITableView,_ indexPath: IndexPath) -> Bool {
-        guard showLoadingIndicator else { return false }
+        guard shouldLoadMore(tableView) else { return false }
         return indexPath.row == self.tableView(tableView, numberOfRowsInSection: indexPath.section) - 1
     }
 }
