@@ -104,7 +104,7 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
     /// - Parameter tableView: The tableview.
     /// - Returns: The view to display as the loading indicator.
     open func loadingView(_ tableView: UITableView,forLoadingCell: Bool) -> UIView? {
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        let activityIndicator = UIActivityIndicatorView(style: .gray)
         activityIndicator.hidesWhenStopped = false
         activityIndicator.startAnimating()
         return activityIndicator
@@ -191,7 +191,7 @@ fileprivate class ErrorButton: UIButton {
 /// The default loading cell
 fileprivate class LoadingCell: UITableViewCell {
 
-    convenience init(view: UIView, style: UITableViewCellStyle, reuseIdentifier: String?) {
+    convenience init(view: UIView, style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -199,7 +199,7 @@ fileprivate class LoadingCell: UITableViewCell {
         view.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         self.separatorInset = UIEdgeInsets(top: 0, left: CGFloat.greatestFiniteMagnitude, bottom: 0, right: 0)

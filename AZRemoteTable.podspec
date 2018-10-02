@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AZRemoteTable"
-  s.version      = "1.0.4"
+  s.version      = "1.0.5"
   s.summary      = "A framework that makes loading remote data into a table view an easy task."
   s.homepage     = "https://github.com/Minitour/AZRemoteTable"
   s.license      = "MIT"
