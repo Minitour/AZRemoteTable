@@ -53,7 +53,7 @@ public class AZRemoteTable: NSObject {
             }
 
             //reload data
-            self.tableView.reloadData()
+            self.delegate?.onReloadData(self.tableView)
         }
     }
 
@@ -61,7 +61,9 @@ public class AZRemoteTable: NSObject {
     /// Function used to notify the delegate, the data source and the table view that new data could not be loaded.
     open func notifyError() {
         //notify delegate
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let `self` = self else { return }
+
             self.delegate?.notify(success: false)
             self.dataSource?.notifyError()
 
@@ -90,13 +92,17 @@ public class AZRemoteTable: NSObject {
                 }
             }
 
-            self.tableView.reloadData()
+            self.delegate?.onReloadData(self.tableView)
         }
     }
 
+    @available(swift, obsoleted: 4.1, renamed: "load")
+    open func initialLoad() {
+        load()
+    }
 
     /// Function used to do the initial setup and make the initial load.
-    open func initialLoad() {
+    open func load() {
         if let delegate = delegate, !delegate.didInitialLoad {
             delegate.tableView = tableView
 

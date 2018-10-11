@@ -123,7 +123,7 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
             let remote = tableView.remote
             let currentPage = remote.delegate?.currentPage ?? -1
             if currentPage == 0 {
-                remote.initialLoad()
+                remote.load()
             }else {
                 tableView.reloadData()
             }

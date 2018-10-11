@@ -28,6 +28,10 @@ open class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
         return currentPage != 0
     }
 
+    open func reset() {
+        currentPage = 0
+        loadMore = true
+    }
 
     /// Called only before initial load and if there was an error after the initial load.
     ///
@@ -86,6 +90,14 @@ open class AZRemoteTableDelegate: NSObject, UITableViewDelegate {
                 self.tableView(tableView, didRequestPage: currentPage)
             }
         }
+    }
+
+
+    /// Function called when tableview needs to reload data. Override to add your own custom functionality.
+    ///
+    /// - Parameter tableView: the table view that needs to has it's data reloaded.
+    open func onReloadData(_ tableView: UITableView) {
+        tableView.reloadData()
     }
 
 

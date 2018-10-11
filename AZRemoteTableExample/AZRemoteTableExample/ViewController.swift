@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = delegate
         tableView.dataSource = dataSource
-        tableView.remote.initialLoad()
+        tableView.remote.load()
     }
 }
 

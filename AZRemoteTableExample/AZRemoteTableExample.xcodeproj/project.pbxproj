@@ -18,6 +18,7 @@
 		9D3872DF20E2BADD00E6C27F /* AZRemoteTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872DC20E2BADD00E6C27F /* AZRemoteTable.swift */; };
 		9D3872E020E2BADD00E6C27F /* AZRemoteTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872DD20E2BADD00E6C27F /* AZRemoteTableDelegate.swift */; };
 		9D3872E120E2BADD00E6C27F /* AZRemoteTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3872DE20E2BADD00E6C27F /* AZRemoteTableDataSource.swift */; };
+		9DDEE210217006DD00EC0B33 /* RemoteArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDEE20F217006DD00EC0B33 /* RemoteArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		9D3872DC20E2BADD00E6C27F /* AZRemoteTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTable.swift; sourceTree = "<group>"; };
 		9D3872DD20E2BADD00E6C27F /* AZRemoteTableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTableDelegate.swift; sourceTree = "<group>"; };
 		9D3872DE20E2BADD00E6C27F /* AZRemoteTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AZRemoteTableDataSource.swift; sourceTree = "<group>"; };
+		9DDEE20F217006DD00EC0B33 /* RemoteArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteArray.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				9D3872D320E2A1EC00E6C27F /* APIManager.swift */,
+				9DDEE20F217006DD00EC0B33 /* RemoteArray.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				9D3872D420E2A1EC00E6C27F /* APIManager.swift in Sources */,
 				9D3872D920E2A2E600E6C27F /* CustomRemoteDataSource.swift in Sources */,
 				9D3872E120E2BADD00E6C27F /* AZRemoteTableDataSource.swift in Sources */,
+				9DDEE210217006DD00EC0B33 /* RemoteArray.swift in Sources */,
 				9D3872BC20E2A0E300E6C27F /* ViewController.swift in Sources */,
 				9D3872E020E2BADD00E6C27F /* AZRemoteTableDelegate.swift in Sources */,
 				9D3872BA20E2A0E300E6C27F /* AppDelegate.swift in Sources */,
