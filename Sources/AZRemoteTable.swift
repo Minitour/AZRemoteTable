@@ -10,10 +10,26 @@ import UIKit
 
 public extension UITableView {
     public var remote: AZRemoteTable { return AZRemoteTable(self) }
+
+    public var rowCount: Int {
+        let numberOfSections = self.numberOfSections
+
+        var count = 0
+
+        for i in 0 ..< numberOfSections {
+            count += self.numberOfRows(inSection: i)
+        }
+
+        return count
+    }
 }
 
 /// Table View Wrapper
 public class AZRemoteTable: NSObject {
+
+    fileprivate var isTableEmpty: Bool {
+        return tableView.rowCount == 0
+    }
 
     fileprivate let INNER_VIEW_ID: Int = 1711
 
@@ -54,6 +70,13 @@ public class AZRemoteTable: NSObject {
 
             //reload data
             self.delegate?.onReloadData(self.tableView)
+
+            if self.isTableEmpty, let emptyStateView = self.dataSource?.emptyStateView(self.tableView) {
+                emptyStateView.tag = self.INNER_VIEW_ID
+
+                //send to layoutView delegate function
+                self.delegate?.tableView(self.tableView, layoutView: emptyStateView)
+            }
         }
     }
 
@@ -61,8 +84,7 @@ public class AZRemoteTable: NSObject {
     /// Function used to notify the delegate, the data source and the table view that new data could not be loaded.
     open func notifyError() {
         //notify delegate
-        DispatchQueue.main.async { [weak self] in
-            guard let `self` = self else { return }
+        DispatchQueue.main.async { 
 
             self.delegate?.notify(success: false)
             self.dataSource?.notifyError()

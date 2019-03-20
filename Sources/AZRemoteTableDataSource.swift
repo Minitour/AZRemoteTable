@@ -133,6 +133,13 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
         return errorLabel
     }
 
+    open func emptyStateView(_ tableView: UITableView)-> UIView? {
+        let defaultLabel = UILabel()
+        defaultLabel.text = "No data was found"
+
+        return defaultLabel
+    }
+
     
     /// Use this method do enable the loading indicator visabilty.
     ///
@@ -170,7 +177,7 @@ open class AZRemoteTableDataSource: NSObject, UITableViewDataSource {
 
 
 /// Custom UIButton sub class used for the default error view.
-fileprivate class ErrorButton: UIButton {
+class ErrorButton: UIButton {
     open var onClick: ((UIButton)->Void)?
 
     override init(frame: CGRect) {
@@ -189,7 +196,7 @@ fileprivate class ErrorButton: UIButton {
 }
 
 /// The default loading cell
-fileprivate class LoadingCell: UITableViewCell {
+class LoadingCell: UITableViewCell {
 
     convenience init(view: UIView, style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.init(style: style, reuseIdentifier: reuseIdentifier)
